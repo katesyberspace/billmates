@@ -1,0 +1,10 @@
+<header>
+  <img src="#logo" alt="billmates logo">
+  <div>
+    <p><%= current_user.name %></p>
+    <form action="/session" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button>logout</button>
+    </form>
+  </div>
+</header>

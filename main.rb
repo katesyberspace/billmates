@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/reloader'
 require_relative 'db_config'
 require_relative 'models/user'
 require_relative 'models/bill'
@@ -23,6 +24,15 @@ get '/' do
   erb :index
 end
 
+get '/users/:id' do
+  if logged_in?
+    erb :users_detail
+  else
+    redirect '/'
+  end
+end
+
+
 post '/session' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
@@ -32,11 +42,6 @@ post '/session' do
     erb :index
   end
 end
-
-get '/users/:id' do
-  erb :users_detail
-end
-
 
 delete '/session' do
   session[:user_id] = nil
