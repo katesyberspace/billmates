@@ -23,10 +23,6 @@ get '/' do
   erb :index
 end
 
-get '/users/:id' do
-  erb :users_detail
-end
-
 post '/session' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
@@ -36,6 +32,11 @@ post '/session' do
     erb :index
   end
 end
+
+get '/users/:id' do
+  erb :users_detail
+end
+
 
 delete '/session' do
   session[:user_id] = nil
