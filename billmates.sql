@@ -20,6 +20,10 @@ CREATE TABLE bills (
 ALTER TABLE bills 
 ADD COLUMN join_pin INTEGER;
 
+ALTER TABLE bills
+ADD COLUMN open BOOLEAN;
+
+
 CREATE TABLE usersxbills (
   id SERIAL4 PRIMARY KEY,
   user_id INTEGER NOT NULL,

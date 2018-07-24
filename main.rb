@@ -21,9 +21,6 @@ helpers do
   def random_join_id
     ('AA000'..'ZZ999').to_a.sample
   end
-
-    
-
 end
 
 
@@ -68,9 +65,9 @@ post '/bills/new' do
   bill = Bill.new
   bill.name = params[:name]
   bill.user_id = current_user.id
-  bill.open_closed = 1
+  # bill.open_closed = 1
   @random_num = random_join_id()
-  while Bill.find_by(join_pin: @random_num)
+  while Bill.find_by(join_pin: @random_num) do
     @random_num = random_join_id()
   end 
   bill.join_pin = @random_num
@@ -78,7 +75,7 @@ post '/bills/new' do
   join = Usersxbill.new
   join.bill_id = bill.id
   join.user_id = current_user.id
-  join.save
+  join.savee
   redirect "/users/#{current_user.id}"
 end
 
