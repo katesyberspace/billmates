@@ -1,11 +1,22 @@
-<form action="/session" method="post">
-  <label for="">email</label>
-  <input name="email" type="email">
-  <label for="">password</label>
-  <input name="password" type="password">
-  <button>login</button>
-</form>
+<header>
+  <h1>billmates</h1>
+</header>
 
-<p>
-  <a href="/users/new">create new user</a>
-</p>
+<main class="login">
+  <form action="/session" method="post">
+    <div class="login-input">
+      <div>
+        <label for="">email</label>
+        <input name="email" type="email">
+      </div>
+      <div>
+        <label for="">password</label>
+        <input name="password" type="password">
+      </div>
+    </div>
+    <button>login</button>
+  </form>
+  <p>
+    <a href="/users/new">create new user</a>
+  </p>
+</main>

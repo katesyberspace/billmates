@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+
+}

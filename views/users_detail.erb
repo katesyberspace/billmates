@@ -8,3 +8,34 @@
     </form>
   </div>
 </header>
+
+<section class="create-join-bill">
+  <form action="/bills/new" method="post">
+    <input name="name" type="text" placeholder="enter name for your bill or event">
+    <button>create bill</button>
+  </form>
+  <form action="/bills/join" method="post">
+    <input name="join_id" type="text" placeholder="enter bill pin">
+    <button>join</button>
+  </form>
+
+</section>
+
+
+<section>
+  <% current_user.bills.each do |bill|%>
+  <p> <%= bill.name %><% bill.join_pin %> </p>
+  <p> <%= bill.join_pin %></p>
+  <% end %>
+
+</section>
+
+
+
+
+<section>
+  <p>
+    <%# <%= Usersxbill.first.join_pin %>
+  </p>
+
+</section>
