@@ -1,5 +1,5 @@
 require 'sinatra'
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 require_relative 'db_config'
 require_relative 'models/user'
 require_relative 'models/bill'
@@ -96,10 +96,26 @@ post '/bills/join' do
   redirect "users/#{current_user.id}"
 end
 
+
+post '/items/new' do 
+  # raise 'sdsfsdf'
+  item = Item.new
+  item.bill_id = params[:bill_id]
+  item.name = params[:name]
+  item.amount = params[:amount]
+  item.paid_by_user_id = User.find_by(name: params[:paid_by]).id
+
+  item.created_by_user_id = current_user.id
+  item.save
+
+  redirect "/bills/6"
+end
+
 delete '/session' do
   session[:user_id] = nil
   redirect '/'
 end
+
 
 
 

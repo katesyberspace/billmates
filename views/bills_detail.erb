@@ -1,7 +1,8 @@
 <header>
   <img src="#logo" alt="billmates logo">
   <div>
-    <h1> <%= @bill.name%></h1>
+    <h1> <%= @bill.name %> </h1>
+    <h2> <%= @bill.join_pin %> </h2>
   </div>
   <div>
     <p><%= current_user.name %></p>
@@ -13,6 +14,7 @@
   
   <%# display members of the bill %>
   <div>
+    <p>bill mates</p>
     <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
       <p><%=User.find(bill.user_id).name%></p>
     <% end %>
@@ -20,4 +22,60 @@
 
 </header>
 
-<p>bill id is <%= @bill.id %></p>
+<section class="add-item">
+  <h2>add item</h2>
+
+  <form action="/items/new" method="post">
+    <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+    <input type="text" name="name" placeholder="enter item description">
+    <input type="text" name="amount" placeholder="enter amount">
+    <select name="paid_by">
+
+      <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
+        <option value="<%= User.find(bill.user_id).name %>">
+          <%= User.find(bill.user_id).name %>
+        </option>
+      <% end %>
+      
+    </select>
+    <button>add</button>
+  </form>
+
+
+</section>
+
+<section>
+  <h2>who owes what</h2>
+  <% total = @bill.items.sum(:amount)%>
+  <% per_person = total/Usersxbill.where(bill_id: @bill.id).length %>
+  <h3>bill total: <%= total %></h3>
+  <%# display members of the bill %>
+  <div class="totals-table">
+    <table>
+      <tr>
+        <th>billmate</th>
+        <th>paid</th>
+        <th>per person amount</th>
+        <th>owes/is due</th>
+      </tr>
+
+      <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
+      <tr>
+        <td><%= User.find(bill.user_id).name %></td>
+        <td> <%= @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %> </td>
+        <td> <%= per_person %></td>
+        <td> <%= per_person - @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %></td>
+      </tr>
+      <% end %>
+
+    </table>
+  </div>
+</section>
+
+
+<section>
+  <h2>items</h2>
+  <% @bill.items.each do |item| %>
+    <p> <%= item.name %> <%= item.amount %> <%= User.find(item.paid_by_user_id).name %> </p>
+  <% end %>
+</section>
