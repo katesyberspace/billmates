@@ -15,27 +15,34 @@
     <button>create bill</button>
   </form>
   <form action="/bills/join" method="post">
-    <input name="join_id" type="text" placeholder="enter bill pin">
+    <input name="join_pin" type="text" placeholder="enter bill pin">
     <button>join</button>
   </form>
 
 </section>
 
-
-<section>
-  <% current_user.bills.each do |bill|%>
-  <p> <%= bill.name %><% bill.join_pin %> </p>
-  <p> <%= bill.join_pin %></p>
+<%# displays open bills %>
+<% current_user.usersxbills.each do |bill| %>
+  <% open_bill = Bill.find_by(open: true)%>
+  <% if open_bill %>
+    <section>
+        <p> 
+          <a href="/bills/<%= bill.id%>">
+            <%= Bill.find_by(id: bill.bill_id, open: true).name %>
+          </a>
+        </p> 
+        <p> <%= Bill.find_by(id: bill.bill_id, open: true).join_pin %></p>
+    </section>
   <% end %>
+<%end%>
 
-</section>
-
-
-
-
-<section>
-  <p>
-    <%# <%= Usersxbill.first.join_pin %>
-  </p>
-
-</section>
+<%# displays closed bills %>
+<% current_user.usersxbills.each do |bill| %>
+  <% closed_bill = Bill.find_by(open: false)%>
+  <% if closed_bill %>
+    <section>
+        <p> <%= Bill.find_by(id: bill.bill_id, open: false).name %> </p> 
+        <p> <%= Bill.find_by(id: bill.bill_id, open: false).join_pin %></p>
+    </section>
+  <% end %>
+<%end%>

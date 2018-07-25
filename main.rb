@@ -18,7 +18,7 @@ helpers do
     !!current_user
   end
 
-  def random_join_id
+  def random_join_pin
     ('AA000'..'ZZ999').to_a.sample
   end
 end
@@ -51,6 +51,11 @@ get '/users/:id' do
   end
 end
 
+get '/bills/:id' do
+  @bill = Bill.find(params[:id])
+  erb :bills_detail
+end
+
 post '/session' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
@@ -65,30 +70,31 @@ post '/bills/new' do
   bill = Bill.new
   bill.name = params[:name]
   bill.user_id = current_user.id
-  # bill.open_closed = 1
-  @random_num = random_join_id()
+  bill.open = true
+  @random_num = random_join_pin()
   while Bill.find_by(join_pin: @random_num) do
-    @random_num = random_join_id()
+    @random_num = random_join_pin()
   end 
   bill.join_pin = @random_num
   bill.save
   join = Usersxbill.new
   join.bill_id = bill.id
   join.user_id = current_user.id
-  join.savee
+  join.save
   redirect "/users/#{current_user.id}"
 end
 
 post '/bills/join' do
-  bill = find_by(pin: params[:join_id])
-  join = Userxbill.new
-  join.bill_id = bill.id
-  join.user_id = current_user.id
-  join.save
+  bill = Bill.find_by(join_pin: params[:join_pin])
+  if Usersxbill.find_by(user_id: current_user.id, bill_id: bill.id)
+  else
+    join = Usersxbill.new
+    join.bill_id = bill.id
+    join.user_id = current_user.id
+    join.save
+  end    
   redirect "users/#{current_user.id}"
 end
-
-
 
 delete '/session' do
   session[:user_id] = nil

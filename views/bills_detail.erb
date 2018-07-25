@@ -1,0 +1,23 @@
+<header>
+  <img src="#logo" alt="billmates logo">
+  <div>
+    <h1> <%= @bill.name%></h1>
+  </div>
+  <div>
+    <p><%= current_user.name %></p>
+    <form action="/session" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button>logout</button>
+    </form>
+  </div>
+  
+  <%# display members of the bill %>
+  <div>
+    <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
+      <p><%=User.find(bill.user_id).name%></p>
+    <% end %>
+  </div>
+
+</header>
+
+<p> <%= @bill.id %></p>

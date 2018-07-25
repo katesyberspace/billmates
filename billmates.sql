@@ -18,7 +18,10 @@ CREATE TABLE bills (
 );
 
 ALTER TABLE bills 
-ADD COLUMN join_pin INTEGER;
+ADD COLUMN join_pin VARCHAR(5);
+
+ALTER TABLE bills
+DROP COLUMN open_closed;
 
 ALTER TABLE bills
 ADD COLUMN open BOOLEAN;
@@ -31,7 +34,6 @@ CREATE TABLE usersxbills (
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE RESTRICT,
   FOREIGN KEY (bill_id) REFERENCES bills (id) ON DELETE RESTRICT
 );
-
 
 
 CREATE TABLE items (
