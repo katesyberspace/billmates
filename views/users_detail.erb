@@ -27,7 +27,7 @@
   <% if open_bill %>
     <section>
         <p> 
-          <a href="/bills/<%= bill.id%>">
+          <a href="/bills/<%= Bill.find_by(id: bill.bill_id, open: true).id%>">
             <%= Bill.find_by(id: bill.bill_id, open: true).name %>
           </a>
         </p> 
@@ -44,5 +44,5 @@
         <p> <%= Bill.find_by(id: bill.bill_id, open: false).name %> </p> 
         <p> <%= Bill.find_by(id: bill.bill_id, open: false).join_pin %></p>
     </section>
-  <% end %>
+  <% end %></a>
 <%end%>
