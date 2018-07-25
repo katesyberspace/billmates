@@ -22,27 +22,31 @@
 </section>
 
 <%# displays open bills %>
+<p>open bills</p>
 <% current_user.usersxbills.each do |bill| %>
-  <% open_bill = Bill.find_by(open: true)%>
-  <% if open_bill %>
+  <% if Bill.find(bill.bill_id).open%>
     <section>
         <p> 
-          <a href="/bills/<%= Bill.find_by(id: bill.bill_id, open: true).id%>">
-            <%= Bill.find_by(id: bill.bill_id, open: true).name %>
+          <a href="/bills/<%= Bill.find(bill.bill_id).id%>">
+            <%= Bill.find(bill.bill_id).name %>
           </a>
         </p> 
-        <p> <%= Bill.find_by(id: bill.bill_id, open: true).join_pin %></p>
+        <p> <%= Bill.find(bill.bill_id).join_pin %></p>
     </section>
   <% end %>
 <%end%>
 
 <%# displays closed bills %>
+<p>closed bills</p>
 <% current_user.usersxbills.each do |bill| %>
-  <% closed_bill = Bill.find_by(open: false)%>
-  <% if closed_bill %>
+  <% if !Bill.find(bill.bill_id).open%>
     <section>
-        <p> <%= Bill.find_by(id: bill.bill_id, open: false).name %> </p> 
-        <p> <%= Bill.find_by(id: bill.bill_id, open: false).join_pin %></p>
+        <p> 
+          <a href="/bills/<%= Bill.find(bill.bill_id).id%>">
+            <%= Bill.find(bill.bill_id).name %>
+          </a>
+        </p> 
+        <p> <%= Bill.find(bill.bill_id).join_pin %></p>
     </section>
-  <% end %></a>
+  <% end %>
 <%end%>

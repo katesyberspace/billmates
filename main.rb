@@ -60,6 +60,8 @@ put '/bills/edit' do
   bill = Bill.find(params[:bill_id])
   bill.name = params[:name]
   bill.img_url = params[:img_url]
+  bill.open = params[:open]
+  # return bill.open.to_s
   bill.save
   redirect "/bills/#{params[:bill_id]}"
 end
