@@ -22,83 +22,86 @@
 
 </header>
 
-<main>
-  <section class="add-item">
-    <h2>add item</h2>
+<div class="bill-details">
+  <main class="payment-details">
+    <section class="add-item">
+      <h2>add item</h2>
 
-    <form action="/items/new" method="post">
-      <input type="hidden" name="bill_id" value="<%=@bill.id%>">
-      <input type="text" name="name" placeholder="enter item description">
-      <input type="text" name="amount" placeholder="enter amount">
-      <select name="paid_by">
+      <form action="/items/new" method="post">
+        <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+        <input type="text" name="name" placeholder="enter item description">
+        <input type="text" name="amount" placeholder="enter amount">
+        <select name="paid_by">
 
-        <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
-          <option value="<%= User.find(bill.user_id).name %>">
-            <%= User.find(bill.user_id).name %>
-          </option>
-        <% end %>
-        
-      </select>
-      <button>add</button>
-    </form>
+          <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
+            <option value="<%= User.find(bill.user_id).name %>">
+              <%= User.find(bill.user_id).name %>
+            </option>
+          <% end %>
+          
+        </select>
+        <button>add</button>
+      </form>
 
 
-  </section>
+    </section>
 
-  <% total = @bill.items.sum(:amount)%>
-  <% per_person = total/Usersxbill.where(bill_id: @bill.id).length %>
-  <h3>bill total: <%= total %></h3>
+    <% total = @bill.items.sum(:amount)%>
+    <% per_person = total/Usersxbill.where(bill_id: @bill.id).length %>
+    <h3>bill total: <%= total %></h3>
 
-  <section>
-    <h2>who owes what</h2>
+    <section>
+      <h2>who owes what</h2>
 
-    <%# display members of the bill %>
-    <div class="totals-table">
+      <%# display members of the bill %>
+      <div class="totals-table">
+        <table>
+          <tr>
+            <th>billmate</th>
+            <th>paid</th>
+            <th>per person amount</th>
+            <th>owes/is due</th>
+          </tr>
+
+          <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
+          <tr>
+            <td><%= User.find(bill.user_id).name %></td>
+            <td> <%= @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %> </td>
+            <td> <%= per_person %></td>
+            <td> <%= per_person - @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %></td>
+          </tr>
+          <% end %>
+
+        </table>
+      </div>
+    </section>
+
+
+    <section>
+      <h2>items</h2>
       <table>
         <tr>
-          <th>billmate</th>
-          <th>paid</th>
-          <th>per person amount</th>
-          <th>owes/is due</th>
+          <th>item</th>
+          <th>amount</th>
+          <th>paid by</th>
         </tr>
 
-        <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
+        <% @bill.items.each do |item| %>
         <tr>
-          <td><%= User.find(bill.user_id).name %></td>
-          <td> <%= @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %> </td>
-          <td> <%= per_person %></td>
-          <td> <%= per_person - @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %></td>
+          <td><%= item.name %></td>
+          <td><%= item.amount %></td>
+          <td><%= User.find(item.paid_by_user_id).name %></td>  
         </tr>
         <% end %>
-
       </table>
-    </div>
-  </section>
 
 
-  <section>
-    <h2>items</h2>
-    <table>
-      <tr>
-        <th>item</th>
-        <th>amount</th>
-        <th>paid by</th>
-      </tr>
+    </section>
+  </main>
 
-      <% @bill.items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.amount %></td>
-        <td><%= User.find(item.paid_by_user_id).name %></td>  
-      </tr>
-      <% end %>
-    </table>
+  <aside class="forum">
 
+  <p>this is the forum</p>
 
-  </section>
-</main>
-
-<aside>
-<p>this is the forum</p>
-
-</aside>
+  </aside>
+</div>
