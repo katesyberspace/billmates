@@ -108,7 +108,7 @@ post '/items/new' do
   item.created_by_user_id = current_user.id
   item.save
 
-  redirect "/bills/6"
+  redirect "/bills/#{params[:bill_id]}"
 end
 
 delete '/session' do
