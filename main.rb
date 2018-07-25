@@ -51,10 +51,25 @@ get '/users/:id' do
   end
 end
 
+get '/bills/edit' do
+  @bill = Bill.find(params[:bill_id])
+  erb :bill_edit
+end
+
+put '/bills/edit' do
+  bill = Bill.find(params[:bill_id])
+  bill.name = params[:name]
+  bill.img_url = params[:img_url]
+  bill.save
+  redirect "/bills/#{params[:bill_id]}"
+end
+
+
 get '/bills/:id' do
   @bill = Bill.find(params[:id])
   erb :bills_detail
 end
+
 
 post '/session' do
   user = User.find_by(email: params[:email])
@@ -84,6 +99,7 @@ post '/bills/new' do
   redirect "/users/#{current_user.id}"
 end
 
+
 post '/bills/join' do
   bill = Bill.find_by(join_pin: params[:join_pin])
   if Usersxbill.find_by(user_id: current_user.id, bill_id: bill.id)
@@ -96,6 +112,17 @@ post '/bills/join' do
   redirect "users/#{current_user.id}"
 end
 
+
+post '/bills/comments/new' do
+  comment = Comment.new
+  comment.bill_id = params[:bill_id]
+  comment.user_id = current_user.id
+  comment.content = params[:content]
+  comment.save
+
+  redirect "/bills/#{params[:bill_id]}"
+
+end
 
 post '/items/new' do 
   # raise 'sdsfsdf'

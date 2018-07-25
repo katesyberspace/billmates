@@ -1,28 +1,31 @@
-<header>
+<header class="bill-details-header">
   <img src="#logo" alt="billmates logo">
-  <div>
+  <div class="bill-name-join">
     <h1> <%= @bill.name %> </h1>
     <h2> <%= @bill.join_pin %> </h2>
   </div>
-  <div>
-    <p><%= current_user.name %></p>
-    <form action="/session" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button>logout</button>
-    </form>
+  <div class="user-nav">
+    <div class="edit-btn">
+      <form action="/bills/edit" method="get">
+        <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+        <button>edit bill</button>
+      </form>
+    </div>
+    <div class="user-btns">
+      <p><%= current_user.name %></p>
+      <form action="/users/<%= current_user.id%>">
+        <button>my bills</button>
+      </form>
+      <form action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>logout</button>
+      </form>
+    <div>
   </div>
   
-  <%# display members of the bill %>
-  <div>
-    <p>bill mates</p>
-    <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
-      <p><%=User.find(bill.user_id).name%></p>
-    <% end %>
-  </div>
-
 </header>
 
-<div class="bill-details">
+<div class="bill-details-main-aside">
   <main class="payment-details">
     <section class="add-item">
       <h2>add item</h2>
@@ -100,8 +103,22 @@
   </main>
 
   <aside class="forum">
+    <div class="posts">
+      <% @bill.comments.each do |comment|%>
+        <div class="comment-box">
+          <span> <%= User.find(comment.user_id).name %></span>
+          <span> <%= comment.content%> </span>
+        </div>
+      <% end %>
 
-  <p>this is the forum</p>
-
+    </div>
+    <div class="input">
+      <form action="/bills/comments/new" method="post">
+        <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+        <input name="content" type="text" placeholder="type a message">
+        <button>send</button>
+      </form>
+    </div>
+  
   </aside>
 </div>

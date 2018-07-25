@@ -1,0 +1,13 @@
+<form action="/bills/edit" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+  <label for="">enter new bill name</label>
+  <input type="text" name="name" value="<%=@bill.name%>">
+  <label for="">change bill banner image</label>
+  <input type="text" name="img_url" value="<%=@bill.img_url%>">
+  <button>save</button>
+</form>
+
+<form action="/bills/<%=@bill.id%>">
+  <button>cancel</button>
+</form>
