@@ -1,12 +1,13 @@
 <header class="login-header">
   <h1>billmates</h1>  
-  <h2>split bills with your mates</h2>
+  <div class="slogan">
+    <h2>split bills with your mates</h2>
+  </div>
 </header>
 
 <section class="login-screenshot">
 
   <img src="http://via.placeholder.com/100x100" alt="">
-
 
 </section>
 
@@ -15,16 +16,16 @@
 <main class="login-main">
   <form action="/session" method="post">
     <div class="login-input">
-      <div class="login-credentials">
-        <label for="">email</label>
-        <input name="email" type="email">
+      <div class="login-details">
+
+        <input name="email" type="email" placeholder="email">
       </div>
-      <div>
-        <label for="">password</label>
-        <input name="password" type="password">
+      <div class="login-details">
+
+        <input name="password" type="password" placeholder="password">
       </div>
     </div>
-    <button>login</button>
+    <button class="login-btn">login</button>
   </form>
   <p>
     <a href="/users/new">create new user</a>

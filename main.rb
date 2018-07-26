@@ -103,14 +103,18 @@ end
 
 
 post '/bills/join' do
-  bill = Bill.find_by(join_pin: params[:join_pin])
-  if Usersxbill.find_by(user_id: current_user.id, bill_id: bill.id)
-  else
-    join = Usersxbill.new
-    join.bill_id = bill.id
-    join.user_id = current_user.id
-    join.save
-  end    
+  join_pin = params[:join_pin].upcase
+  # return join_pin
+  bill = Bill.find_by(join_pin: join_pin)
+  if bill
+    if Usersxbill.find_by(user_id: current_user.id, bill_id: bill.id)
+    else
+      join = Usersxbill.new
+      join.bill_id = bill.id
+      join.user_id = current_user.id
+      join.save
+    end    
+  end
   redirect "users/#{current_user.id}"
 end
 

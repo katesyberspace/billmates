@@ -6,33 +6,33 @@ body {
   width: 100vw;
   margin: 0;
   font-family: 'Questrial', sans-serif;
-  background-color: #8bb1da;
+  background-color: #F0C808;
   color: white; 
 }
 
 /* login page */
 
+
 .login-header {
   text-align: center;
-  background-color: #00134d;
+  background-color: #086788;
 }
 
 .login-header > h1 {
   color: white;
   font-family: 'Lily Script One', cursive;
-  font-size: 3em;
+  font-size: 8em;
   font-weight: 500;
   margin: 0;
 }
 
-.login-header > h2 {
+.slogan > h2 {
   color: white;
   font-weight: 700;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  margin-top: 0;
-  padding-top: 10px;
-  background-color: #8bb1da;
+  font-size: 2.5em;
+  background-color: #F0C808;
+  margin: 0;
+  line-height: 2;
 }
 
 .login-screenshot {
@@ -54,20 +54,52 @@ body {
   color: white;
 }
 
+input { 
+  border-color:#cccccc; 
+  padding:8px; font-size:3em; 
+  /* border-radius:10px;  */
+  border-style:solid; 
+  border-width:0px; 
+  color:#6b6b6b; 
+  box-shadow: 0px 2px 6px 0px rgba(42,42,42,.75); 
+  text-shadow:0px 0px 0px rgba(42,42,42,.75);  
+  margin: 10px;
+} 
 
-.login-input {
-  display: flex;
-  flex-direction: column;
+input:focus { outline:none; } 
 
+
+.login-btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  background-color: #086788;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 2em;
+  padding: 10px 20px 10px 20px;
+  border: solid #086788 1px;
+  text-decoration: none;
+  margin: 5px;
+  outline: none;
 }
 
+.login-btn:hover {
+  background-color: transparent;
+  text-decoration: none;
+}
 
+.login-main > p > a{
+  color: white;
+  font-size: 2em;
+}
 
 
 
 /* bill details page, header, div > main > aside */
 
 .bill-details-header {
+  background-image: 
 
 }
 
@@ -116,4 +148,19 @@ width: 30%;
   border-radius: 5px;
 
   width: auto;
+}
+
+
+@media only screen  and (min-width : 1224px) {
+
+  .login-screenshot{
+    width: 40vw;
+    margin: 0 auto;
+  }
+  .login-screenshot > img {
+ 
+  }
+
+
+
 }
