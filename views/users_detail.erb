@@ -1,52 +1,59 @@
-<header>
-  <img src="#logo" alt="billmates logo">
-  <div>
-    <p><%= current_user.name %></p>
-    <form action="/session" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button>logout</button>
-    </form>
+<header class="user-header">
+  <div class="user-header-wrapper">
+    <h1>billmates</h1>
+    <div>
+      <p><%= current_user.name %></p>
+      <form action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="logout-btn">logout</button>
+      </form>
+    </div>
   </div>
 </header>
 
 <section class="create-join-bill">
   <form action="/bills/new" method="post">
-    <input name="name" type="text" placeholder="enter name for your bill or event">
-    <button>create bill</button>
+    <input name="name" type="text" placeholder="enter name for your bill">
+    <button class="create-join-btns">add</button>
   </form>
   <form action="/bills/join" method="post">
     <input name="join_pin" type="text" placeholder="enter bill pin">
-    <button>join</button>
+    <button class="create-join-btns">join</button>
   </form>
 
 </section>
 
 <%# displays open bills %>
-<p>open bills</p>
-<% current_user.usersxbills.each do |bill| %>
-  <% if Bill.find(bill.bill_id).open%>
-    <section>
-        <p> 
-          <a href="/bills/<%= Bill.find(bill.bill_id).id%>">
-            <%= Bill.find(bill.bill_id).name %>
-          </a>
-        </p> 
-        <p> <%= Bill.find(bill.bill_id).join_pin %></p>
-    </section>
-  <% end %>
-<%end%>
+<div class="open-closed-bills">
+  <p>open bills</p>
+  <% current_user.usersxbills.each do |bill| %>
+    <% if Bill.find(bill.bill_id).open%>
+      <section class="one-bill">
+          <p> 
+            <a href="/bills/<%= Bill.find(bill.bill_id).id%>">
+              <%= Bill.find(bill.bill_id).name %>
+            </a>
+          </p> 
+          <p> join code: <%= Bill.find(bill.bill_id).join_pin %></p>
+      </section>
+    <% end %>
+  <%end%>
+</div>
+
 
 <%# displays closed bills %>
-<p>closed bills</p>
-<% current_user.usersxbills.each do |bill| %>
-  <% if !Bill.find(bill.bill_id).open%>
-    <section>
-        <p> 
-          <a href="/bills/<%= Bill.find(bill.bill_id).id%>">
-            <%= Bill.find(bill.bill_id).name %>
-          </a>
-        </p> 
-        <p> <%= Bill.find(bill.bill_id).join_pin %></p>
-    </section>
-  <% end %>
-<%end%>
+<div class="open-closed-bills">
+  <p>closed bills</p>
+  <% current_user.usersxbills.each do |bill| %>
+    <% if !Bill.find(bill.bill_id).open%>
+      <section class="one-bill">
+          <p> 
+            <a href="/bills/<%= Bill.find(bill.bill_id).id%>">
+              <%= Bill.find(bill.bill_id).name %>
+            </a>
+          </p> 
+          <p>join code: <%= Bill.find(bill.bill_id).join_pin %></p>
+      </section>
+    <% end %>
+  <%end%>
+</div>
