@@ -62,7 +62,7 @@ input {
   box-shadow: 0px 2px 6px 0px rgba(42,42,42,.75); 
   text-shadow:0px 0px 0px rgba(42,42,42,.75);  
   margin: 10px;
-  background-color: whitesmoke;l
+  background-color: whitesmoke;
 } 
 
 input:focus { outline:none; } 
@@ -121,12 +121,13 @@ input:focus { outline:none; }
 
 .user-header-wrapper {
   display: flex;
+  justify-content: space-between
 }
 
 .user-header-wrapper > h1 {
   color: white;
   font-family: 'Lily Script One', cursive;
-  font-size: 8em;
+  font-size: 6em;
   font-weight: 500;
   margin: 0;
 }
@@ -212,13 +213,45 @@ input:focus { outline:none; }
 /* bill details page, header, div > main > aside */
 
 .bill-details-header {
-  background-image: 
-
+  background-color: #086788;
 }
 
-.bill-name-join {
+.bill-name {
+  background-color: whitesmoke;
+  color: #8EAEB9;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+
+
+.bill-name > div > h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.bill-name :first-child {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+}
+
+.bill-name > h2{
+  font-size: 2em;
+  margin: 0;
+  
+}
+
+.edit-btn {
+  background: #086788;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 2em;
+  font-family: 'Questrial', sans-serif;
+  width: 100px;
 }
 
 .user-nav {
@@ -226,9 +259,8 @@ input:focus { outline:none; }
   /* justify-content: flex-end; */
 }
 
-.edit-btn {
-width: 30%;
-}
+
+
 .user-btns {
   display: flex;
   width: 70%;
@@ -243,26 +275,119 @@ width: 30%;
 }
 
 .payment-details {
-  border: 1px solid red;
   width:100%;
   padding: 1%;
 }
 
+
+select {
+  border-color:#cccccc; 
+  padding:8px; 
+  font-size:3em; 
+  border-style:solid; 
+  border-width:0px; 
+  color:#6b6b6b; 
+  box-shadow: 0px 2px 6px 0px rgba(42,42,42,.75); 
+  text-shadow:0px 0px 0px rgba(42,42,42,.75);  
+  margin: 10px;
+  background-color: whitesmoke;
+}
+
+.add-btn {
+  background: #086788;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 3em;
+  font-family: 'Questrial', sans-serif;
+  padding: 8px;
+}
+
+.table {
+  border-radius: 10px 10px 0 0;
+  background-color: whitesmoke;
+  color: #8EAEB9;
+}
+
+
+table {
+  border: 1px solid #086788;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #086788;
+  padding: 3px 4px;
+}
+table tbody td {
+  font-size: 2em;
+}
+table td:nth-child(even) {
+  background: #EBEBEB;
+}
+table thead {
+  background: #086788;
+  border-bottom: 4px solid#333333;
+}
+table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  border-left: 2px solid #333333;
+}
+table thead th:first-child {
+  border-left: none;
+}
+
+table tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  border-top: 4px solid #333333;
+}
+table tfoot td {
+  font-size: 14px;
+}
+
+
 /* aside - class forum */
 
 .forum {
-  border: 1px solid blue;
-  width: 100%;
-  padding: 1%;
+  background-color: whitesmoke;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  color: #086788;
 }
 
 .comment-box {
-  border: 1px solid green;
   border-radius: 5px;
-
-  width: auto;
+  width: fit-content;
+  color: whitesmoke ;
+  background-color: #086788;
+  font-size: 2em;
+  padding: 5px;
+  margin: 5px;
 }
 
+.comment-name {
+  font-weight: bold;
+}
+
+.comment-input {
+  border-radius: 10px 10px 0 0;
+  padding:8px; 
+  font-size:2em; 
+  border-style:solid; 
+  border-width:0px; 
+  color:#6b6b6b; 
+  box-shadow: 0px 2px 6px 0px rgba(42,42,42,.75); 
+  text-shadow:0px 0px 0px rgba(42,42,42,.75);  
+  margin: 10px;
+  background-color: whitesmoke;
+}
 
 @media only screen  and (min-width : 1224px) {
 /* login screen */

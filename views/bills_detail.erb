@@ -1,36 +1,46 @@
-<header class="bill-details-header">
-  <img src="#logo" alt="billmates logo">
+<% total = @bill.items.sum(:amount)%>
+<% per_person = total/Usersxbill.where(bill_id: @bill.id).length %>
 
-  <div class="bill-name-join">
-    <h1> <%= @bill.name %> </h1>
-    <h2> <%= @bill.join_pin %> </h2>
-  </div>
-
-  <div class="user-nav">
-    <div class="edit-btn">
-      <form action="/bills/edit" method="get">
-        <input type="hidden" name="bill_id" value="<%=@bill.id%>">
-        <button>edit bill</button>
-      </form>
-    </div>
-
-    <div class="user-btns">
+<header class="user-header">
+  <div class="user-header-wrapper">
+    <h1>billmates</h1>
+    <div>
       <p><%= current_user.name %></p>
-      <form action="/users/<%= current_user.id%>">
-        <button>my bills</button>
-      </form>
       <form action="/session" method="post">
         <input type="hidden" name="_method" value="delete">
-        <button>logout</button>
+        <button class="logout-btn">logout</button>
       </form>
-    <div>
+    </div>
   </div>
 </header>
 
-<% if @bill.img_url %>
+<section class="bill-name">
+  <div>
+    <h1> <%= @bill.name %> </h1>
+    <div >
+      <form action="/bills/edit" method="get">
+        <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+        <button class="edit-btn">edit</button>
+      </form>
+    </div>
+  </div> 
+
+
+
+    <div>
+      <h2>total $<%=total%></h2>
+      <h2>join code: <%= @bill.join_pin %> </h2>
+    </div>
+</section>
+
+<% if !@bill.img_url == ""%>
   <style>
    .bill-details-header {
-     background-image: url("<%=@bill.img_url%>")
+     background-image: url("<%=@bill.img_url%>");
+     background-size: contain;
+   }
+   .bill-name-join {
+     text-shadow: 2px 2px rgba(42,42,42,.75);
    }
   </style>
 <% end %>
@@ -44,6 +54,7 @@
         <input type="hidden" name="bill_id" value="<%=@bill.id%>">
         <input type="text" name="name" placeholder="enter item description">
         <input type="text" name="amount" placeholder="enter amount">
+        <br>
         <select name="paid_by">
 
           <% Usersxbill.where(bill_id: @bill.id).each do |bill| %>
@@ -53,21 +64,19 @@
           <% end %>
           
         </select>
-        <button>add</button>
+        <button class="add-btn">add</button>
       </form>
 
 
     </section>
 
-    <% total = @bill.items.sum(:amount)%>
-    <% per_person = total/Usersxbill.where(bill_id: @bill.id).length %>
-    <h3>bill total: <%= total %></h3>
+    
 
-    <section>
+
+    <section class="table">
       <h2>who owes what</h2>
 
-      <%# display members of the bill %>
-      <div class="totals-table">
+      <div >
         <table>
           <tr>
             <th>billmate</th>
@@ -90,7 +99,7 @@
     </section>
 
 
-    <section>
+    <section class = "table">
       <h2>items</h2>
       <table>
         <tr>
@@ -116,7 +125,7 @@
     <div class="posts">
       <% @bill.comments.each do |comment|%>
         <div class="comment-box">
-          <span> <%= User.find(comment.user_id).name %></span>
+          <span class="comment-name"> <%= User.find(comment.user_id).name %></span>
           <span> <%= comment.content%> </span>
         </div>
       <% end %>
@@ -124,7 +133,7 @@
     </div>
     <div class="input">
       <form action="/bills/comments/new" method="post">
-        <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+        <input class="comment-input" type="hidden" name="bill_id" value="<%=@bill.id%>">
         <input name="content" type="text" placeholder="type a message">
         <button>send</button>
       </form>
