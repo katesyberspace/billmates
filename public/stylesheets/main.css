@@ -39,8 +39,6 @@ body {
   text-align: center;
 }
 
-
-
 .login-screenshot > img {
   width: 100%
 }
@@ -94,7 +92,30 @@ input:focus { outline:none; }
   font-size: 2em;
 }
 
+/* create new user page */
+.new-user-form {
+  text-align: center;
+} 
 
+.new-user-form > button {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  background-color: #086788;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 2em;
+  padding: 10px 20px 10px 20px;
+  border: solid #086788 1px;
+  text-decoration: none;
+  margin: 5px;
+  outline: none;
+}
+
+.new-user-form > button:hover {
+  background-color: transparent;
+  text-decoration: none;
+}
 
 /* bill details page, header, div > main > aside */
 
