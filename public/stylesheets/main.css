@@ -69,9 +69,6 @@ input:focus { outline:none; }
 
 
 .login-btn {
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
   background-color: #086788;
   font-family: Arial;
   color: #ffffff;
@@ -99,9 +96,6 @@ input:focus { outline:none; }
 } 
 
 .new-user-form > button {
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
   background-color: #086788;
   font-family: Arial;
   color: #ffffff;
@@ -271,15 +265,95 @@ width: 30%;
 
 
 @media only screen  and (min-width : 1224px) {
+/* login screen */
+
+  
+  .login-header > h1 {
+    color: white;
+    font-family: 'Lily Script One', cursive;
+    font-size: 4em;
+    font-weight: 500;
+    margin: 0;
+  } 
 
   .login-screenshot{
     width: 40vw;
     margin: 0 auto;
   }
-  .login-screenshot > img {
- 
+
+  .slogan > h2 {
+
+    font-size: 1.5em;
+    line-height: 2;
+  }
+
+  input {
+    font-size: 1em
+  }
+
+  .login-btn {
+    font-size: 1em;
+  }
+
+  .login-main > p > a{
+    color: white;
+    font-size: 1em;
+  }
+
+  .login-input {
+    display: flex;
+    justify-content: center;
   }
 
 
+/* new user view */
+
+  .new-user-form > button {
+    font-size: 1em;
+  }
+
+/* user detail view */
+.user-header-wrapper {
+  justify-content: space-between;
+}
+
+.user-header-wrapper > div{
+  margin-bottom: 11px;
+}
+
+  .user-header-wrapper > h1 {
+    font-size: 3em;
+  }
+  
+  .user-header-wrapper > div > p {
+    font-size: 1.2em;
+  }
+
+  .logout-btn {
+    font-size: 1.2em;
+  }
+
+  .create-join-bill {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+  }
+
+  .create-join-btns {
+    font-size: 1em;
+  }
+
+  .open-closed-bills > p {
+    font-size: 1em;
+  }
+
+  .one-bill {
+    font-size: .6em;
+  }
+
+  .user-main {
+    width: 50%;
+    margin: 0 auto;
+  }
 
 }
