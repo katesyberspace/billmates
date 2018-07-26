@@ -53,6 +53,7 @@ body {
 }
 
 input { 
+  border-radius: 10px;
   border-color:#cccccc; 
   padding:8px; 
   font-size:3em; 
@@ -377,7 +378,7 @@ table tfoot td {
 }
 
 .comment-input {
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
   padding:8px; 
   font-size:2em; 
   border-style:solid; 
@@ -387,6 +388,17 @@ table tfoot td {
   text-shadow:0px 0px 0px rgba(42,42,42,.75);  
   margin: 10px;
   background-color: whitesmoke;
+}
+
+.send-btn {
+  background: #086788;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 2em;
+  font-family: 'Questrial', sans-serif;
+  padding: 8px;
+  border-radius: 10px;
 }
 
 @media only screen  and (min-width : 1224px) {

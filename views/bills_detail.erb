@@ -133,9 +133,9 @@
     </div>
     <div class="input">
       <form action="/bills/comments/new" method="post">
-        <input class="comment-input" type="hidden" name="bill_id" value="<%=@bill.id%>">
-        <input name="content" type="text" placeholder="type a message">
-        <button>send</button>
+        <input  type="hidden" name="bill_id" value="<%=@bill.id%>">
+        <input class="comment-input"name="content" type="text" placeholder="type a message">
+        <button class="send-btn">send</button>
       </form>
     </div>
   
