@@ -3,7 +3,6 @@
 }
 
 body {
-  width: 100vw;
   margin: 0;
   font-family: 'Questrial', sans-serif;
   background-color: #F0C808;
@@ -385,18 +384,18 @@ table tfoot td {
   width: fit-content;
   color: whitesmoke ;
   background-color: #086788;
-
+  font-size: 30px;
   padding: 5px;
   margin: 5px;
+  width: 100%;
 }
-
 .comment-name {
   font-weight: bold;
-  font-size: 2em;
+  /* font-size: 15px; */
 }
 
 #comment-content {
-  font-size: 2em;
+  /* font-size: 15px; */
 }
 
 .comment-input {
@@ -540,9 +539,19 @@ label {
     margin: 0 auto;
   }
 
+  .add-items-form {
+    display: flex;
+  }
+
   .bill-details-main-aside {
-    width: 50%;
+    display: flex;
     margin: 0 auto;
+  }
+
+  aside {
+    width: 50%;
+    height: 82vh;
+    overflow: auto;
   }
 
   select, .comment-input, .send-btn {

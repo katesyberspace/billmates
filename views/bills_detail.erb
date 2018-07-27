@@ -39,7 +39,7 @@
     <section class="add-item">
       <h2>add item</h2>
 
-      <form action="/items/new" method="post">
+      <form class="add-items-form" action="/items/new" method="post">
         <input type="hidden" name="bill_id" value="<%=@bill.id%>">
         <input type="text" name="name" placeholder="enter item description">
         <input type="text" name="amount" placeholder="enter amount">
@@ -53,7 +53,7 @@
           <% end %>
           
         </select>
-        <button class="add-btn">add</button>
+        <button class="send-btn">add</button>
       </form>
 
 
@@ -111,15 +111,6 @@
   </main>
 
   <aside class="forum">
-    <div class="posts">
-      <% @bill.comments.each do |comment|%>
-        <div class="comment-box">
-          <span class="comment-name"> <%= User.find(comment.user_id).name %>: </span>
-          <span id="comment-content"> <%= comment.content%> </span>
-        </div>
-      <% end %>
-
-    </div>
     <div class="input">
       <form action="/bills/comments/new" method="post">
         <input  type="hidden" name="bill_id" value="<%=@bill.id%>">
@@ -127,6 +118,16 @@
         <button class="send-btn">send</button>
       </form>
     </div>
+    <div class="posts">
+      <% @bill.comments.reverse.each do |comment|%>
+        <div class="comment-box">
+          <span class="comment-name"> <%= User.find(comment.user_id).name %>: </span>
+          <span id="comment-content"> <%= comment.content%> </span>
+        </div>
+      <% end %>
+
+    </div>
+
   
   </aside>
 </div>
