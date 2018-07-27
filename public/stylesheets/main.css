@@ -120,6 +120,7 @@ input:focus { outline:none; }
 .user-header {
   background-color: #086788;
   padding: 0 10px;
+  z-index: 10;
 }
 
 .user-header-wrapper {
@@ -419,7 +420,6 @@ table tfoot td {
   font-size: 3em;
   font-family: 'Questrial', sans-serif;
   padding: 8px;
-  border-radius: 10px;
 }
 
 input[type='checkbox'] {
@@ -494,6 +494,7 @@ label {
 
   /* user detail view */
   .user-header-wrapper {
+    padding: 10 20px;
     justify-content: space-between;
   }
 
@@ -511,6 +512,11 @@ label {
   .logout-btn {
     font-size: 1.2em;
   }
+
+  .bill-name > div > h1{
+    font-size: 2em;
+  }
+
   .create-join-bill {
     display: flex;
     justify-content: space-evenly;
