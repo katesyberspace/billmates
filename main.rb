@@ -21,6 +21,10 @@ helpers do
   def random_join_pin
     ('AA000'..'ZZ999').to_a.sample
   end
+
+  def decimal_to_money(num)
+    '%.2f' % num
+  end
 end
 
 

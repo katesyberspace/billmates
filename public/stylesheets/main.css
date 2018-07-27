@@ -26,7 +26,9 @@ body {
   margin: 0;
 }
 
+
 .slogan > h2 {
+  text-align: center;
   color: white;
   font-weight: 700;
   font-size: 2.5em;
@@ -149,6 +151,11 @@ input:focus { outline:none; }
   padding-right: 10px;
 }
 
+.user-header-wrapper > div > p > a{
+  color: white;
+  text-decoration: none;
+}
+
 .user-header-wrapper > button {
   background: none;
 }
@@ -245,6 +252,10 @@ input:focus { outline:none; }
   
 }
 
+.edit-bill {
+  margin-bottom: 50px;
+}
+
 .edit-btn {
   background: #086788;
   color: white;
@@ -253,6 +264,7 @@ input:focus { outline:none; }
   font-size: 2em;
   font-family: 'Questrial', sans-serif;
   width: 100px;
+  padding: 2px;
 }
 
 .user-nav {
@@ -260,24 +272,21 @@ input:focus { outline:none; }
   /* justify-content: flex-end; */
 }
 
-
-
 .user-btns {
   display: flex;
   width: 70%;
   justify-content: flex-end;
 }
 
-
-
-
-.bill-details-main-aside {
-  /* display: flex; */
-}
-
 .payment-details {
   width:100%;
   padding: 1%;
+}
+
+.add-item > h2 {
+  padding: 0 10px;
+  font-size: 2.5em;
+  margin: 2.5px;
 }
 
 
@@ -307,15 +316,21 @@ select {
 .table {
   border-radius: 10px 10px 0 0;
   background-color: whitesmoke;
-  color: #8EAEB9;
+  color: #086788;
+}
+
+.table > h2 {
+  padding: 5px;
 }
 
 
 table {
+  padding: 10px
   border: 1px solid #086788;
   width: 100%;
   text-align: center;
   border-collapse: collapse;
+  box-shadow: 0px 2px 6px 0px rgba(42,42,42,.75); 
 }
 table td, table th {
   border: 1px solid #086788;
@@ -361,6 +376,7 @@ table tfoot td {
   padding: 10px;
   border-radius: 10px 10px 0 0;
   color: #086788;
+  box-shadow: 0px 2px 6px 0px rgba(42,42,42,.75); 
 }
 
 .comment-box {
@@ -368,19 +384,24 @@ table tfoot td {
   width: fit-content;
   color: whitesmoke ;
   background-color: #086788;
-  font-size: 2em;
+
   padding: 5px;
   margin: 5px;
 }
 
 .comment-name {
   font-weight: bold;
+  font-size: 2em;
+}
+
+#comment-content {
+  font-size: 2em;
 }
 
 .comment-input {
   border-radius: 10px;
   padding:8px; 
-  font-size:2em; 
+  font-size:3em; 
   border-style:solid; 
   border-width:0px; 
   color:#6b6b6b; 
@@ -395,16 +416,38 @@ table tfoot td {
   color: white;
   border: none;
   outline: none;
-  font-size: 2em;
+  font-size: 3em;
   font-family: 'Questrial', sans-serif;
   padding: 8px;
   border-radius: 10px;
 }
 
+input[type='checkbox'] {
+  -webkit-appearance:none;
+  width:30px;
+  height:30px;
+  background:white;
+  border-radius:5px;
+  border:1px solid #555;
+}
+input[type='checkbox']:checked {
+  background: #abd;
+}
+
+.edit-main {
+  padding: 10px;
+}
+
+/* bill edit */
+
+label {
+  font-size: 3em;
+}
+
+
 @media only screen  and (min-width : 1224px) {
 /* login screen */
 
-  
   .login-header > h1 {
     color: white;
     font-family: 'Lily Script One', cursive;
@@ -443,33 +486,31 @@ table tfoot td {
   }
 
 
-/* new user view */
+  /* new user view */
 
-  .new-user-form > button {
-    font-size: 1em;
+    .new-user-form > button {
+      font-size: 1em;
+    }
+
+  /* user detail view */
+  .user-header-wrapper {
+    justify-content: space-between;
   }
 
-/* user detail view */
-.user-header-wrapper {
-  justify-content: space-between;
-}
-
-.user-header-wrapper > div{
-  margin-bottom: 11px;
-}
+  .user-header-wrapper > div{
+    margin-bottom: 11px;
+  }
 
   .user-header-wrapper > h1 {
     font-size: 3em;
   }
-  
+
   .user-header-wrapper > div > p {
     font-size: 1.2em;
   }
-
   .logout-btn {
     font-size: 1.2em;
   }
-
   .create-join-bill {
     display: flex;
     justify-content: space-evenly;
@@ -488,9 +529,23 @@ table tfoot td {
     font-size: .6em;
   }
 
-  .user-main {
+  .user-main, .edit-main {
     width: 50%;
     margin: 0 auto;
   }
+
+  .bill-details-main-aside {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  select, .comment-input, .send-btn {
+    font-size: 2em;
+  }
+
+  .add-btn {
+    font-size: 2em;
+  }
+
 
 }

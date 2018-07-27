@@ -2,7 +2,7 @@
   <div class="user-header-wrapper">
     <h1>billmates</h1>
     <div>
-      <p><%= current_user.name %></p>
+      <p><a href = "/users/<%=current_user.id%>"><%= current_user.name %></a></p>
       <form action="/session" method="post">
         <input type="hidden" name="_method" value="delete">
         <button class="logout-btn">logout</button>

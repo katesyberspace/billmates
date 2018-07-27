@@ -5,7 +5,7 @@
   <div class="user-header-wrapper">
     <h1>billmates</h1>
     <div>
-      <p><%= current_user.name %></p>
+      <p><a href = "/users/<%=current_user.id%>"><%= current_user.name %></a></p>
       <form action="/session" method="post">
         <input type="hidden" name="_method" value="delete">
         <button class="logout-btn">logout</button>
@@ -33,17 +33,6 @@
     </div>
 </section>
 
-<% if !@bill.img_url == ""%>
-  <style>
-   .bill-details-header {
-     background-image: url("<%=@bill.img_url%>");
-     background-size: contain;
-   }
-   .bill-name-join {
-     text-shadow: 2px 2px rgba(42,42,42,.75);
-   }
-  </style>
-<% end %>
 
 <div class="bill-details-main-aside">
   <main class="payment-details">
@@ -89,8 +78,8 @@
           <tr>
             <td><%= User.find(bill.user_id).name %></td>
             <td> <%= @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %> </td>
-            <td> <%= per_person %></td>
-            <td> <%= per_person - @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount) %></td>
+            <td> <%= decimal_to_money(per_person) %></td>
+            <td> <%= decimal_to_money(per_person - @bill.items.where(:paid_by_user_id => User.find(bill.user_id).id).sum(:amount)) %></td>
           </tr>
           <% end %>
 
@@ -111,7 +100,7 @@
         <% @bill.items.each do |item| %>
         <tr>
           <td><%= item.name %></td>
-          <td><%= item.amount %></td>
+          <td><%= decimal_to_money(item.amount) %></td>
           <td><%= User.find(item.paid_by_user_id).name %></td>  
         </tr>
         <% end %>
@@ -125,8 +114,8 @@
     <div class="posts">
       <% @bill.comments.each do |comment|%>
         <div class="comment-box">
-          <span class="comment-name"> <%= User.find(comment.user_id).name %></span>
-          <span> <%= comment.content%> </span>
+          <span class="comment-name"> <%= User.find(comment.user_id).name %>: </span>
+          <span id="comment-content"> <%= comment.content%> </span>
         </div>
       <% end %>
 

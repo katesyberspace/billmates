@@ -1,15 +1,38 @@
-<form action="/bills/edit" method="post">
-  <input type="hidden" name="_method" value="put">
-  <input type="hidden" name="bill_id" value="<%=@bill.id%>">
-  <label for="">enter new bill name</label>
-  <input type="text" name="name" value="<%=@bill.name%>">
-  <label for="">change bill banner image</label>
-  <input type="text" name="img_url" value="<%=@bill.img_url%>">
-  <input type="checkbox" name="open" value="false">archive bill<br>
-  <input type="checkbox" name="open" value="true">re-open bill<br>
-  <button>save</button>
-</form>
+<header class="user-header">
+  <div class="user-header-wrapper">
+    <h1>billmates</h1>
+    <div>
+      <p><a href = "/users/<%=current_user.id%>"><%= current_user.name %></a></p>
+      <form action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="logout-btn">logout</button>
+      </form>
+    </div>
+  </div>
+</header>
 
-<form action="/bills/<%=@bill.id%>">
-  <button>cancel</button>
-</form>
+<main class="edit-main">
+  <form class="edit-bill" action="/bills/edit" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="bill_id" value="<%=@bill.id%>">
+    <br>
+    <label for="">enter new bill name</label>
+    <input type="text" name="name" value="<%=@bill.name%>">
+    <br>
+  <% if @bill.open %>
+    <label class = "checkbox" for="">archive
+    <input type="checkbox" name="open" value="false">
+    </label>
+  <% else %>
+    <label class = "checkbox" for="">re-open
+    <input type="checkbox" name="open" value="true">
+    </label>
+  <% end %>
+    <button class="edit-btn">save</button>
+  </form>
+
+  <form action="/bills/<%=@bill.id%>">
+    <button class="edit-btn">cancel</button>
+  </form>
+
+</main>
