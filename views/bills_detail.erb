@@ -24,13 +24,10 @@
       </form>
     </div>
   </div> 
-
-
-
-    <div>
-      <h2>total $<%=total%></h2>
-      <h2>join code: <%= @bill.join_pin %> </h2>
-    </div>
+  <div>
+    <h2>total $<%=total%></h2>
+    <h2>join code: <%= @bill.join_pin %> </h2>
+  </div>
 </section>
 
 
@@ -38,7 +35,6 @@
   <main class="payment-details">
     <section class="add-item">
       <h2>add item</h2>
-
       <form class="add-items-form" action="/items/new" method="post">
         <input type="hidden" name="bill_id" value="<%=@bill.id%>">
         <input type="text" name="name" placeholder="enter item description">
@@ -55,16 +51,10 @@
         </select>
         <button class="send-btn">add</button>
       </form>
-
-
     </section>
-
-    
-
 
     <section class="table">
       <h2>who owes what</h2>
-
       <div >
         <table>
           <tr>
@@ -87,7 +77,6 @@
       </div>
     </section>
 
-
     <section class = "table">
       <h2>items</h2>
       <table>
@@ -105,9 +94,8 @@
         </tr>
         <% end %>
       </table>
-
-
     </section>
+
   </main>
 
   <aside class="forum">
@@ -127,7 +115,6 @@
       <% end %>
 
     </div>
-
-  
   </aside>
+  
 </div>
