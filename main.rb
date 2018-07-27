@@ -56,8 +56,12 @@ get '/users/:id' do
 end
 
 get '/bills/edit' do
-  @bill = Bill.find(params[:bill_id])
-  erb :bill_edit
+  if logged_in?
+    @bill = Bill.find(params[:bill_id])
+    erb :bill_edit
+  else
+    redirect '/'
+  end
 end
 
 put '/bills/edit' do
@@ -72,8 +76,12 @@ end
 
 
 get '/bills/:id' do
-  @bill = Bill.find(params[:id])
-  erb :bills_detail
+  if logged_in?
+    @bill = Bill.find(params[:id])
+    erb :bills_detail
+  else
+    redirect '/'
+  end
 end
 
 
